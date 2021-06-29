@@ -10,10 +10,7 @@ function beforeSuiteFunc() {
 
 # Test function
 
-@test:Config {
-    before: "beforeFunc",
-    after: "afterFunc"
-}
+@test:Config {}
 function testFunction() {
     io:println("I'm in test function!");
     test:assertTrue(true, msg = "Failed!");
