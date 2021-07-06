@@ -1,5 +1,9 @@
-import ballerina/io;
+# Prints `Hello` with input string name.
 
-public function hello() {
-    io:println("Hello World!");
+public function hello(string name) returns string {
+    if (name is ("")) {
+        return "Name is empty!";
+    } else {
+        return "Hello, " + name;
+    }
 }

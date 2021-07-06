@@ -67,7 +67,7 @@ public class InitCommandTest extends BaseCommandTest {
         Assert.assertTrue(readOutput().contains("Created new Ballerina package"));
     }
 
-    @Test(description = "Test init command with main template")
+    @Test(description = "Test init command with main template", enabled = false)
     public void testInitCommandWithMain() throws IOException {
         // Test if no arguments was passed in
         Path packageDir = tmpDir.resolve("sample2");
@@ -79,7 +79,6 @@ public class InitCommandTest extends BaseCommandTest {
         // Check with spec
         // foo/
         // - Ballerina.toml
-        // - Package.md
         // - main.bal
         // - tests
         //      - main_test.bal
@@ -98,12 +97,11 @@ public class InitCommandTest extends BaseCommandTest {
         Assert.assertTrue(Files.exists(packageDir.resolve(ProjectConstants.TEST_DIR_NAME)));
         Path resourcePath = packageDir.resolve(ProjectConstants.RESOURCE_DIR_NAME);
         Assert.assertFalse(Files.exists(resourcePath));
-        Assert.assertTrue(Files.exists(packageDir.resolve(ProjectConstants.PACKAGE_MD_FILE_NAME)));
 
         Assert.assertTrue(readOutput().contains("Created new Ballerina package"));
     }
 
-    @Test(description = "Test init command with service template")
+    @Test(description = "Test init command with service template", enabled = false)
     public void testInitCommandWithService() throws IOException {
         // Test if no arguments was passed in
         Path packageDir = tmpDir.resolve("sample3");
@@ -134,12 +132,12 @@ public class InitCommandTest extends BaseCommandTest {
         Assert.assertTrue(Files.exists(packageDir.resolve(ProjectConstants.TEST_DIR_NAME)));
         Path resourcePath = packageDir.resolve(ProjectConstants.RESOURCE_DIR_NAME);
         Assert.assertFalse(Files.exists(resourcePath));
-        Assert.assertTrue(Files.exists(packageDir.resolve(ProjectConstants.PACKAGE_MD_FILE_NAME)));
+        Assert.assertTrue(Files.notExists(packageDir.resolve(ProjectConstants.PACKAGE_MD_FILE_NAME)));
 
         Assert.assertTrue(readOutput().contains("Created new Ballerina package"));
     }
 
-    @Test(description = "Test init command with lib template")
+    @Test(description = "Test init command with lib template", enabled = false)
     public void testInitCommandWithLib() throws IOException {
         // Test if no arguments was passed in
         Path packageDir = tmpDir.resolve("sample4");
