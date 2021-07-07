@@ -3,5 +3,5 @@ import ballerina/io;
 # Prints `Hello World`.
 
 public function main() {
-    io:println("Hello, world!");
+    io:println("Hello, World!");
 }

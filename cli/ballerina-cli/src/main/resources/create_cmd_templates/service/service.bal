@@ -10,8 +10,8 @@ service hello on new http:Listener(9090) {
     resource function sayHello(string name) returns string {
         // Send a response back to the caller.
 
-        if (name is ("")) {
-            return "Name is empty!";
+        if (name.isBlank()) {
+            return "Hello, World!";
         } else {
             return "Hello, " + name;
         }
