@@ -1,4 +1,5 @@
 import ballerina/io;
+import ballerina/http;
 import ballerina/test;
 
 http:Client testClient = check new ("http://localhost:9090/hello");
@@ -13,9 +14,9 @@ function beforeSuiteFunc() {
 # Test function
 
 @test:Config {}
-function testServiceFunction() returns string {
-    http:Response response = check testClient->get("/sayHello/?name=John");
-    test:assertEquals("Hello, John");
+function testServiceFunction() {
+    string|error response = testClient->get("/sayHello/?name=John");
+    test:assertEquals(response, "Hello, John");
 }
 
 # Negative test function
@@ -23,7 +24,7 @@ function testServiceFunction() returns string {
 @test:Config {}
 function testServiceFunctionNegative() returns error? {
     http:Response response = check testClient->get("/sayHello/?name=");
-    test:assertEquals("Hello, World!");
+    test:assertEquals(response.getTextPayload(), "Hello, World!");
 }
 
 # After Suite Function
